@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hues and Cues</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>HUES AND CUES</h1>
+        </header>
+
+        <!-- Info Modal -->
+        <div id="info-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>About Hues and Cues</h2>
+                <p><strong>Hues and Cues</strong> is a vibrant game of colorful communication where players are challenged to make connections to colors with words.</p>
+
+                <h3>How to Use This Board:</h3>
+                <ul>
+                    <li><strong>Random Select:</strong> Click the "Random Select" button to randomly choose a color from the board</li>
+                    <li><strong>Manual Select:</strong> Click any color cell to select it manually</li>
+                    <li><strong>Preview:</strong> Hover over any color to see a large preview (when no color is selected)</li>
+                    <li><strong>Clear:</strong> Click the "Clear Selection" button to deselect the current color</li>
+                    <li><strong>Toggle Preview:</strong> Show or hide the color preview panel</li>
+                </ul>
+
+                <h3>The Game:</h3>
+                <p>In the actual board game, players take turns as the "Cue Giver" who chooses a color from the board and gives one-word clues to help other players guess the correct color square. The board features a rainbow spectrum of colors for creative wordplay!</p>
+            </div>
+        </div>
+
+        <!-- Color Preview Panel -->
+        <div class="preview-container">
+            <button id="toggle-preview" class="toggle-preview">Hide Preview</button>
+            <div id="preview-panel" class="preview-panel">
+                <div id="color-preview" class="color-preview">
+                    <div id="preview-swatch" class="preview-swatch"></div>
+                    <div id="preview-text" class="preview-text">Hover or select a color</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="board-wrapper">
+            <!-- Column labels for grayscale reference -->
+            <div class="column-labels grayscale-labels">
+                <div class="label-spacer"></div>
+                <div class="column-label">5</div>
+                <div class="column-label">10</div>
+                <div class="column-label">15</div>
+                <div class="column-label">20</div>
+                <div class="column-label">25</div>
+                <div class="column-label">30</div>
+            </div>
+
+            <!-- Grayscale reference strip -->
+            <div class="grayscale-strip-container">
+                <div class="row-label-spacer"></div>
+                <div class="grayscale-strip" id="grayscale-strip"></div>
+            </div>
+
+            <!-- Column labels for main grid -->
+            <div class="column-labels main-labels">
+                <div class="label-spacer"></div>
+                <div class="column-numbers" id="column-numbers"></div>
+            </div>
+
+            <!-- Main color grid -->
+            <div class="grid-container">
+                <div class="row-labels" id="row-labels"></div>
+                <div class="color-grid" id="color-grid"></div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div>
+                <button id="random-btn">Random Select</button>
+                <button id="clear-btn" class="clear-btn">Clear Selection</button>
+            </div>
+            <div id="selection-display" class="selection-display"></div>
+            <button id="info-btn" class="info-btn" aria-label="Game Information">ℹ️ About</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
