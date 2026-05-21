@@ -33,6 +33,7 @@ h1 {
 
 .board-wrapper {
     margin-bottom: 30px;
+    min-height: 510px;
 }
 
 /* Column labels */
@@ -141,6 +142,8 @@ h1 {
     min-height: 25px;
     cursor: pointer;
     transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .color-cell.selected {
@@ -150,9 +153,34 @@ h1 {
     position: relative;
 }
 
-.color-cell.hovered {
-    opacity: 0.8;
-    transform: scale(1.05);
+/* Only show hover effects on devices with hover capability */
+@media (hover: hover) {
+    .color-cell.hovered {
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+
+    #random-btn:hover {
+        background-color: #45a049;
+        transform: translateY(-2px);
+    }
+
+    #clear-btn:hover {
+        background-color: #da190b;
+        transform: translateY(-2px);
+    }
+
+    .toggle-preview:hover {
+        background-color: #666;
+    }
+
+    .info-btn:hover {
+        background-color: #1976D2;
+    }
+
+    .close-modal:hover {
+        color: #fff;
+    }
 }
 
 /* Controls */
@@ -184,24 +212,16 @@ h1 {
     transition: background-color 0.3s ease, transform 0.1s ease;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 #random-btn {
     background-color: #4CAF50;
 }
 
-#random-btn:hover {
-    background-color: #45a049;
-    transform: translateY(-2px);
-}
-
 #clear-btn {
     background-color: #f44336;
-}
-
-#clear-btn:hover {
-    background-color: #da190b;
-    transform: translateY(-2px);
 }
 
 #random-btn:active,
@@ -227,10 +247,7 @@ h1 {
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-top: 15px;
-}
-
-.info-btn:hover {
-    background-color: #1976D2;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* Color Preview Panel */
@@ -253,10 +270,7 @@ h1 {
     width: 100%;
     transition: background-color 0.3s ease;
     display: block;
-}
-
-.toggle-preview:hover {
-    background-color: #666;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .preview-panel {
@@ -359,16 +373,30 @@ h1 {
     font-weight: bold;
     cursor: pointer;
     transition: color 0.3s ease;
-}
-
-.close-modal:hover {
-    color: #fff;
+    -webkit-tap-highlight-color: transparent;
+    padding: 10px;
 }
 
 /* Responsive design */
 @media (max-width: 900px) {
+    body {
+        padding: 15px;
+    }
+
+    header {
+        margin-bottom: 20px;
+    }
+
     h1 {
         font-size: 2rem;
+    }
+
+    .board-wrapper {
+        min-height: 415px;
+    }
+
+    .controls {
+        margin-top: 20px;
     }
 
     .preview-container {
@@ -431,70 +459,49 @@ h1 {
 }
 
 @media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    header {
+        margin-bottom: 15px;
+    }
+
     h1 {
         font-size: 1.5rem;
     }
 
-    .grayscale-labels {
-        grid-template-columns: 25px repeat(6, 1fr);
-        max-width: calc(25px + 30 * 15px);
+    .controls {
+        margin-top: 15px;
+        gap: 10px;
     }
 
-    .main-labels {
-        grid-template-columns: 25px 1fr;
-        max-width: calc(25px + 30 * 15px);
-    }
-
-    .label-spacer,
-    .row-label-spacer {
-        width: 25px;
-    }
-
-    .grayscale-strip-container,
-    .grid-container {
-        grid-template-columns: 25px 1fr;
-        max-width: calc(25px + 30 * 15px);
-    }
-
-    .grayscale-cell,
-    .color-cell {
-        min-height: 15px;
-    }
-
-    .row-label {
-        height: 15px;
-        font-size: 0.7rem;
-    }
-
-    .column-label {
-        font-size: 0.7rem;
-    }
-
-    .column-number {
-        font-size: 0.55rem;
-        width: 15px;
+    .info-btn {
+        margin-top: 10px;
     }
 
     #random-btn,
     #clear-btn {
-        padding: 12px 30px;
-        font-size: 1rem;
+        padding: 12px 25px;
+        font-size: 0.95rem;
     }
 
     .selection-display {
         font-size: 1.2rem;
+        min-height: 30px;
     }
 
     .preview-container {
         position: relative;
         top: auto;
         right: auto;
-        margin: 20px auto;
+        margin: 15px auto;
         max-width: 300px;
     }
 
     .preview-panel {
         margin-top: 0;
+        padding: 15px;
     }
 
     .preview-panel.hidden {
@@ -507,7 +514,192 @@ h1 {
     }
 
     .preview-swatch {
-        width: 120px;
-        height: 120px;
+        width: 100px;
+        height: 100px;
+    }
+
+    .preview-text {
+        font-size: 0.9rem;
+    }
+
+    .modal-content {
+        padding: 20px;
+    }
+
+    .modal-content h2 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+    }
+
+    .modal-content h3 {
+        font-size: 1.1rem;
+        margin-top: 15px;
+    }
+
+    .modal-content p,
+    .modal-content ul {
+        font-size: 0.9rem;
+    }
+}
+
+/* Portrait mobile - rotate board for better fit */
+@media (max-width: 600px) and (orientation: portrait) {
+    .preview-container {
+        display: none;
+    }
+
+    .board-wrapper {
+        /* Calculate cell size so 16 rows fit the viewport width */
+        --cell-size: calc((100vw - 20px - 25px - 17px) / 16);
+        --original-height: calc(16 * var(--cell-size) + 17px);
+        --original-width: calc(30 * var(--cell-size) + 25px + 31px);
+
+        width: var(--original-width);
+        min-height: auto;
+        margin-left: 0;
+        margin-right: 0;
+        transform: translateX(calc(var(--original-height) + 10px)) rotate(-90deg);
+        transform-origin: top left;
+        margin-bottom: calc(var(--original-width) - var(--original-height) + 20px);
+    }
+
+    .grayscale-labels {
+        grid-template-columns: 25px repeat(6, 1fr);
+        max-width: 100%;
+    }
+
+    .main-labels {
+        grid-template-columns: 25px 1fr;
+        max-width: 100%;
+    }
+
+    .label-spacer,
+    .row-label-spacer {
+        width: 25px;
+    }
+
+    .grayscale-strip-container,
+    .grid-container {
+        grid-template-columns: 25px 1fr;
+        max-width: 100%;
+    }
+
+    .grayscale-strip-container {
+        margin-bottom: 8px;
+    }
+
+    .grayscale-cell,
+    .color-cell {
+        min-height: 0;
+        width: var(--cell-size);
+        height: var(--cell-size);
+    }
+
+    .row-label {
+        font-size: 0.7rem;
+        height: var(--cell-size);
+    }
+
+    .column-number {
+        font-size: 0.55rem;
+        width: var(--cell-size);
+        padding: 2px 0;
+    }
+
+    .column-label {
+        font-size: 0.65rem;
+    }
+
+    .row-labels {
+        gap: 1px;
+    }
+}
+
+/* Landscape mobile - normal orientation, board fits */
+@media (max-width: 900px) and (orientation: landscape) {
+    body {
+        padding: 10px;
+    }
+
+    header {
+        margin-bottom: 10px;
+    }
+
+    h1 {
+        font-size: 1.3rem;
+    }
+
+    .board-wrapper {
+        min-height: auto;
+    }
+
+    .grayscale-labels {
+        grid-template-columns: 20px repeat(6, 1fr);
+        max-width: calc(20px + 30 * 15px);
+    }
+
+    .main-labels {
+        grid-template-columns: 20px 1fr;
+        max-width: calc(20px + 30 * 15px);
+    }
+
+    .label-spacer,
+    .row-label-spacer {
+        width: 20px;
+    }
+
+    .grayscale-strip-container {
+        margin-bottom: 10px;
+    }
+
+    .grayscale-strip-container,
+    .grid-container {
+        grid-template-columns: 20px 1fr;
+        max-width: calc(20px + 30 * 15px);
+    }
+
+    .grayscale-cell,
+    .color-cell {
+        min-height: 12px;
+    }
+
+    .row-label {
+        height: 12px;
+        font-size: 0.6rem;
+    }
+
+    .column-number {
+        font-size: 0.5rem;
+        width: 15px;
+    }
+
+    .column-label {
+        font-size: 0.6rem;
+    }
+
+    .controls {
+        margin-top: 10px;
+        gap: 8px;
+    }
+
+    #random-btn,
+    #clear-btn {
+        padding: 8px 20px;
+        font-size: 0.85rem;
+    }
+
+    .selection-display {
+        font-size: 1rem;
+        min-height: 25px;
+    }
+
+    .info-btn {
+        padding: 6px 15px;
+        font-size: 0.8rem;
+        margin-top: 5px;
+    }
+
+    .preview-container {
+        display: none;
     }
 }
